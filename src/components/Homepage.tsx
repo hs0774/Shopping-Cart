@@ -8,6 +8,9 @@ interface Item {
     id: number,
     price: number,
     title: string,
+    inCart:boolean,
+    quantity:number,
+    cost:number,
     rating: {
         rate:number
     },
@@ -25,44 +28,79 @@ const Homepage: React.FC = () => {
                 id: item.id,
                 price: item.price,
                 title: item.title,
+                inCart:false,
+                quantity:1,
+                cost:0,
                 rating: {
                     rate:item.rating.rate
                 }
             }));
             setItems(createdItems);
-            console.log(items)
         });
     }, []);
-            
+            console.log(items)
+
+    function handleChange(e:any, id:number){
+        console.log(e.target.value);
+        const {name, value} = e.target;
+            setItems(prevItems => 
+                prevItems.map(item => {
+                    if (id === item.id) {
+                        let costt = value * item.price;
+                        return {
+                            ...item,
+                            [name]: value,
+                            cost: costt,
+                        }
+                    }
+                    return item;
+                })
+            );
+    }
+    function handleSubmit(e:any,id:number){
+        e.preventDefault();
+        setItems(prevItems => 
+            prevItems.map(item => {
+                if (id === item.id) {
+                    return {
+                        ...item,
+                        inCart:true
+                    }
+                }
+                return item;
+            })
+        );
+        console.log(items)
+    }
     return (
         <>
         <Link to='/Shop'><button>Shop Now</button></Link>
         <div className="HomeItems">
-            {items.slice(0, 3).map((item, index) => (
+            {items.slice(0,3).map((item, index) => (
                 <div key={item.id}>
                     <img className="HomeItemImg" src={item.image}/>
                     <p>Title: {item.title}</p>
                     <p>Price: {item.price}</p>
                     <p>Rating: {item.rating.rate}</p>
-                    <p>Quantity: <input type="number"></input></p>
-                    <button>Add to Cart</button>
+                    <form onSubmit  ={(e) => handleSubmit(e,item.id)}>
+                        <p>Quantity: 
+                            <input value={item.quantity} name='quantity' min='1'
+                            type="number" onChange={(e) => handleChange(e,item.id)}></input>
+                        </p>
+                        <button>Add to Cart</button>
+                    </form>  
+                    <p>$ {item.cost ? item.cost:item.price}</p>
                 </div>
             ))}
         </div>
-        </>
-        
+        </>    
     )
 }
 
 export default Homepage;
 
-//fetch an img,id,title, price, maybe rating:rate
-
-// .then((json) => ({
-//     img: json[i].image,
-//     id: json[i].id,
-//     price: json[i].price,
-//     title: json[i].title,
-//     rating: json[i].rating.rate,
-//   }
-//   ))
+//todo
+//make the add to cart button a form with quantity,
+//maybe make a added to cart(boolean) and quantity(number) property for items
+//onchange function to reflect quantity change, maybe 
+//submit button that takes quantity change and adds it to cart 
