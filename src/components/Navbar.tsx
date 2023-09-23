@@ -3,11 +3,25 @@ import About from './About'
 import Cart from './Cart'
 import Homepage from "./Homepage";
 import Shop from './Shop'
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import '../css/Navbar.css'
 
+// interface Item {
+//     image: string,
+//     id: number,
+//     price: number,
+//     title: string,
+//     inCart:boolean,
+//     quantity:number,
+//     cost:number,
+//     rating: {
+//         rate:number
+//     },
+// }
 const Navbar: React.FC = () => {
+    // const [dataa,setDataa] = React.useState<Item[]>([]);
+
     return (
         <>
         <div className="Nav">
@@ -28,6 +42,7 @@ const Navbar: React.FC = () => {
                     <Link to='/Cart'><h3>Cart</h3></Link>
                 </li>
            </ul>
+           {/* <Route path="/" element={<Homepage dataa={dataa} setDataa={setDataa} />} /> */}
         </div>   
         <Outlet/>
         </>

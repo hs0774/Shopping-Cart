@@ -3,6 +3,7 @@ import '../css/Homepage.css'
 import { Link } from "react-router-dom";
 
 
+
 interface Item {
     image: string,
     id: number,
@@ -16,17 +17,26 @@ interface Item {
     },
 }
 
-const Homepage: React.FC = () => {
-       const [items, setItems] = React.useState<Item[]>([]);
+interface Props {
+    data: Item[];
+    setData: React.Dispatch<React.SetStateAction<Item[]>>;
+}
+
+const Homepage: React.FC<Props> = ({data,setData}) => {
+    const [items, setItems] = React.useState<Item[]>([
+    ]);
 
     React.useEffect(() => {
+        if(data && data.length > 0){
+            setItems(data)
+        } else {
       fetch('https://fakestoreapi.com/products?limit=15')
         .then(res => res.json())
         .then((json) => {
            const createdItems =  json.map((item:Item) => ({
                 image: item.image,
                 id: item.id,
-                price: item.price,
+                price: Math.floor(item.price),
                 title: item.title,
                 inCart:false,
                 quantity:1,
@@ -36,7 +46,9 @@ const Homepage: React.FC = () => {
                 }
             }));
             setItems(createdItems);
+            setData(items);
         });
+        }
     }, []);
             console.log(items)
 
@@ -56,6 +68,7 @@ const Homepage: React.FC = () => {
                     return item;
                 })
             );
+            setData(items);
     }
     function handleSubmit(e:any,id:number){
         e.preventDefault();
@@ -70,7 +83,7 @@ const Homepage: React.FC = () => {
                 return item;
             })
         );
-        console.log(items)
+        setData(items);
     }
     return (
         <>
@@ -80,16 +93,16 @@ const Homepage: React.FC = () => {
                 <div key={item.id}>
                     <img className="HomeItemImg" src={item.image}/>
                     <p>Title: {item.title}</p>
-                    <p>Price: {item.price}</p>
+                    <p>Price: {item.price}.00</p>
                     <p>Rating: {item.rating.rate}</p>
                     <form onSubmit  ={(e) => handleSubmit(e,item.id)}>
                         <p>Quantity: 
-                            <input value={item.quantity} name='quantity' min='1'
+                            <input value={item.quantity} name='quantity' min='1' step='1'
                             type="number" onChange={(e) => handleChange(e,item.id)}></input>
                         </p>
                         <button>Add to Cart</button>
                     </form>  
-                    <p>$ {item.cost ? item.cost:item.price}</p>
+                    <p>$ {item.cost ? item.cost : item.price}.00</p>
                 </div>
             ))}
         </div>
@@ -100,7 +113,10 @@ const Homepage: React.FC = () => {
 export default Homepage;
 
 //todo
-//make the add to cart button a form with quantity,
-//maybe make a added to cart(boolean) and quantity(number) property for items
-//onchange function to reflect quantity change, maybe 
-//submit button that takes quantity change and adds it to cart 
+//set items in cart page,
+//delete button for items in cart page 
+//quantity button, price and total 
+//right side with total of all items, maybe a title on left side,
+//right side has quantity x cost 
+//grand total
+//proceed to checkout which just takes user back to homepage and sets default state?
