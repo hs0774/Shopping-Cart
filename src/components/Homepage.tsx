@@ -23,8 +23,7 @@ interface Props {
 }
 
 const Homepage: React.FC<Props> = ({data,setData}) => {
-    const [items, setItems] = React.useState<Item[]>([
-    ]);
+    const [items, setItems] = React.useState<Item[]>([]);
 
     React.useEffect(() => {
         if(data && data.length > 0){
@@ -46,29 +45,42 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
                 }
             }));
             setItems(createdItems);
-            setData(items);
+            setData(createdItems);
         });
         }
-    }, []);
-            console.log(items)
+    }, [data]);
+            // console.log(data)
 
     function handleChange(e:any, id:number){
-        console.log(e.target.value);
+       // console.log(e.target.value);
         const {name, value} = e.target;
             setItems(prevItems => 
                 prevItems.map(item => {
                     if (id === item.id) {
-                        let costt = value * item.price;
                         return {
                             ...item,
                             [name]: value,
-                            cost: costt,
+                            cost: value * item.price,
                         }
                     }
                     return item;
                 })
             );
-            setData(items);
+            setData(prevData =>
+                prevData.map(item => {
+                  if (id === item.id) {
+                    return {
+                      ...item,
+                      [name]: value,
+                      cost: value * item.price,
+                    };
+                  }
+                  return item;
+                })
+              );
+            // setData(items);
+            // console.log('data',data);
+            // console.log('items',items);
     }
     function handleSubmit(e:any,id:number){
         e.preventDefault();
@@ -81,9 +93,21 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
                     }
                 }
                 return item;
-            })
+            })  
         );
-        setData(items);
+        setData(prevData => 
+            prevData.map(item => {
+                if (id === item.id) {
+                    return {
+                        ...item,
+                        inCart:true
+                    }
+                }
+                return item;
+            })  
+        );
+        // console.log('data',data);
+        // console.log('items',items);
     }
     return (
         <>
@@ -120,3 +144,7 @@ export default Homepage;
 //right side has quantity x cost 
 //grand total
 //proceed to checkout which just takes user back to homepage and sets default state?
+
+
+//remove the onchange but save it for cart page,
+// add to cart is what matters, 
