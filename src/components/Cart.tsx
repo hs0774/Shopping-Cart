@@ -21,13 +21,23 @@ interface Props {
 
 const Cart: React.FC<Props> = ({data,setData}) => {
     const [cart,setCart] = React.useState<Item[]>(data);
+    const [totalcost,setTotalCost] = React.useState(0);
 
-    // React.useEffect(() => {
-    //     if(data && data.length===0){
-    //         return <p>Cart is empty!</p>
-    //     }
-    //     console.log(data)
-    // }, []);
+    React.useEffect(() => {
+        if(data && data.length===0){
+            setTotalCost(0);
+            return;
+        }
+        
+        const newTotal = data.reduce((accumulator,item:Item) => {
+            if(item.inCart){
+                return accumulator + item.cost
+            }
+            return accumulator;
+        },0)
+
+        setTotalCost(newTotal);
+    }, [data]);
 
     return (
         <div className="Cart">
@@ -36,28 +46,21 @@ const Cart: React.FC<Props> = ({data,setData}) => {
                 ? cart.map((item:Item) => {
                     if(item.inCart===true){
                         return (
-                        <>
+                        <div key={item.id}>
                         <img src={item.image} height={'70px'} width={'70px'} alt={item.title} />
                         <p>{item.title}</p>
                         <p>{item.quantity} x ${item.price}</p>
                         <p>${item.cost}</p>
-                        </>
+                        </div>
                         )
                     }
                     return null;
                 }):<p>Cart is empty!</p>}
-                {/* {cart ? 
-                    <>
-                        <img src={cart[0].image} height={'70px'} width={'70px'} alt={cart[0].title} />
-                        <p>{cart[0].title}</p>
-                        <p>{cart[0].quantity} x ${cart[0].price}</p>
-                        <p>${cart[0].cost}</p>
-                    </>
-                 : 
-                    <p>Cart is empty. Shop now!</p>
-                } */}
             </div>
             <div className="CartRight">
+            {cart.some(item => item.inCart)
+        ? <h1>Total : $ {totalcost}</h1>
+        :null}
                 {/* item list names quantity x price  total at bottom*/}
             </div>
         </div>

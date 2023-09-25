@@ -39,7 +39,7 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
                 title: item.title,
                 inCart:false,
                 quantity:1,
-                cost:0,
+                cost:Math.floor(item.price),
                 rating: {
                     rate:item.rating.rate
                 }
@@ -137,7 +137,7 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
 export default Homepage;
 
 //todo
-//set items in cart page,
+
 //delete button for items in cart page 
 //quantity button, price and total 
 //right side with total of all items, maybe a title on left side,

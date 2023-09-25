@@ -18,7 +18,9 @@ interface Props {
     setData: React.Dispatch<React.SetStateAction<Item[]>>;
 }
 const Shop: React.FC<Props> = ({data,setData}) => {
-    
+    return (
+        <h1>Shop</h1>
+    )
 }
 
 export default Shop;
