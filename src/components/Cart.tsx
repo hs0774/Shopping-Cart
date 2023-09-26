@@ -44,7 +44,7 @@ const Cart: React.FC<Props> = ({data,setData}) => {
             <div className="CartLeft">
                 {cart.some(item => item.inCart)
                 ? cart.map((item:Item) => {
-                    if(item.inCart===true){
+                    if(item.inCart===true && item.quantity>0){
                         return (
                         <div key={item.id}>
                         <img src={item.image} height={'70px'} width={'70px'} alt={item.title} />

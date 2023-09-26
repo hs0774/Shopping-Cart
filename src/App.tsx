@@ -22,13 +22,12 @@ interface Item {
 
 function App() {
   const [data, setData] = React.useState<Item[]>([]);
-
   return (
     <BrowserRouter>
     <Routes>
      <Route
        path="/"
-       element={<Navbar />}
+       element={<Navbar data={data} setData={setData} />}
       >
       <Route
       index

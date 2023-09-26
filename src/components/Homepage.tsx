@@ -57,9 +57,10 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
             setItems(prevItems => 
                 prevItems.map(item => {
                     if (id === item.id) {
+                        const quantity = parseInt(value, 10);
                         return {
                             ...item,
-                            [name]: value,
+                            [name]: quantity,
                             cost: value * item.price,
                         }
                     }
@@ -69,9 +70,10 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
             setData(prevData =>
                 prevData.map(item => {
                   if (id === item.id) {
+                    const quantity = parseInt(value, 10);
                     return {
                       ...item,
-                      [name]: value,
+                      [name]: quantity,
                       cost: value * item.price,
                     };
                   }
@@ -89,7 +91,7 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
                 if (id === item.id) {
                     return {
                         ...item,
-                        inCart:true
+                        inCart:item.quantity>0?true:false,
                     }
                 }
                 return item;
@@ -100,7 +102,7 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
                 if (id === item.id) {
                     return {
                         ...item,
-                        inCart:true
+                        inCart:item.quantity>0?true:false,
                     }
                 }
                 return item;
@@ -121,7 +123,7 @@ const Homepage: React.FC<Props> = ({data,setData}) => {
                     <p>Rating: {item.rating.rate}</p>
                     <form onSubmit  ={(e) => handleSubmit(e,item.id)}>
                         <p>Quantity: 
-                            <input value={item.quantity} name='quantity' min='1' step='1'
+                            <input value={item.quantity} name='quantity' min='0' step='1'
                             type="number" onChange={(e) => handleChange(e,item.id)}></input>
                         </p>
                         <button>Add to Cart</button>
