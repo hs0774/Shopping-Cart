@@ -110,19 +110,20 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
             return newState;
         });
 
-        // setItems(prevItems => 
-        //     prevItems.map(item => {
-        //         if (id === item.id) {
-        //             return {
-        //                 ...item,
-        //                 [name]:parseInt(value,10),
-        //                 cost:value*item.price,
-        //                 inCart:item.quantity>0?true:false,
-        //             }
-        //         }
-        //         return item;
-        //     })  
-        // );
+        setItems(prevItems => 
+            prevItems.map(item => {
+                if (id === item.id) {
+                    return {
+                        ...item,
+                        [name]:parseInt(value,10),
+                        cost:value*item.price,
+                        inCart: parseInt(value,10)>0,
+
+                    }
+                }
+                return item;
+            })  
+        );
 
         setData(prevData => 
             prevData.map(item => {
@@ -131,7 +132,8 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
                         ...item,
                         [name]:parseInt(value,10),
                         cost:value*item.price,
-                        inCart:item.quantity>0?true:false,
+                        inCart:parseInt(value,10)>0,
+                        
                     }
                 }
                 return item;
@@ -141,6 +143,8 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
         // console.log('data',data);  .slice(0,3)
         // console.log('items',items);
     }
+
+    
     return (
         <>
         <Link to='/Shop'><button>Shop Now</button></Link>
