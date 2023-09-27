@@ -40,7 +40,38 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
         },0)
 
         setTotalCost(newTotal);
-    }, [data]);
+    }, [cart]);
+
+    function handleClick(id:number){
+        setData(prevItems =>
+            prevItems.map(item => {
+                if(item.id === id){
+                    return {
+                        ...item,
+                        inCart:false,
+                        quantity:1,
+                    }
+                }
+                return item;
+            }));
+        setCart(prevItems =>
+                prevItems.map(item => {
+                    if(item.id === id){
+                        return {
+                            ...item,
+                            inCart:false,
+                            quantity:1,
+                        }
+                    }
+                    return item;
+        }));
+        setOrderData(prev => {
+            const newState = new Set(prev);
+            newState.delete(id);
+            return newState;
+        });
+
+    }
     console.log(orderState);
     return (
         <div className="Cart">
@@ -55,6 +86,7 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
                           <p>{item.title}</p>
                           <p>{item.quantity} x ${item.price}.00</p>
                           <p>${item.cost}.00</p>
+                          <button type="button" onClick={(e) => handleClick(item.id)}> &times;</button>
                         </div>
                       );
                     }

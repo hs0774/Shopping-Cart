@@ -147,7 +147,6 @@ const Shop: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
     
     return (
         <>
-        <Link to='/Shop'><button>Shop Now</button></Link>
         <div className="HomeItems">
             {items.map((item, index) => (
                 <div key={item.id}>
