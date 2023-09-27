@@ -22,6 +22,8 @@ interface Item {
 
 function App() {
   const [data, setData] = React.useState<Item[]>([]);
+  const [orderData,setOrderData] = React.useState(new Set<number>());
+
   return (
     <BrowserRouter>
     <Routes>
@@ -31,11 +33,11 @@ function App() {
       >
       <Route
       index
-      element={<Homepage data={data} setData={setData} />}
+      element={<Homepage data={data} setData={setData} orderData={orderData} setOrderData={setOrderData}/>}
       />
-      <Route path="Cart" element={<Cart data={data} setData={setData} />} />
+      <Route path="Cart" element={<Cart data={data} setData={setData} orderData ={orderData} setOrderData={setOrderData} />} />
       <Route path="About" element={<About />} />
-      <Route path="Shop" element={<Shop data={data} setData={setData} />} />
+      <Route path="Shop" element={<Shop data={data} setData={setData} orderData ={orderData} setOrderData={setOrderData}/>} />
      </Route>
     </Routes>
     </BrowserRouter>
