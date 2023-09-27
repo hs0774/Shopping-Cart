@@ -145,7 +145,7 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
         <>
         <Link to='/Shop'><button>Shop Now</button></Link>
         <div className="HomeItems">
-            {items.slice(0,1).map((item, index) => (
+            {items.slice(0,3).map((item, index) => (
                 <div key={item.id}>
                     <img className="HomeItemImg" src={item.image}/>
                     <p>Title: {item.title}</p>

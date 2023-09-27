@@ -46,19 +46,20 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
         <div className="Cart">
             <div className="CartLeft">
                 {cart.some(item => item.inCart && item.quantity>0)
-                ? cart.map((item:Item) => {
-                    if(item.inCart && item.quantity>0){
-                        return (
+                ? Array.from(orderState).map((id) => {
+                    const item = cart.find((item) => item.inCart && item.id === id);
+                    if (item) {
+                      return (
                         <div key={item.id}>
-                        <img src={item.image} height={'70px'} width={'70px'} alt={item.title} />
-                        <p>{item.title}</p>
-                        <p>{item.quantity} x ${item.price}.00</p>
-                        <p>${item.cost}.00</p>
+                          <img src={item.image} height={'70px'} width={'70px'} alt={item.title} />
+                          <p>{item.title}</p>
+                          <p>{item.quantity} x ${item.price}.00</p>
+                          <p>${item.cost}.00</p>
                         </div>
-                        )
+                      );
                     }
                     return null;
-                }):<p>Cart is empty!</p>}
+                  }):<p>Cart is empty!</p>}
             </div>
             <div className="CartRight">
             {cart.some(item => item.inCart && item.quantity>0)
@@ -76,3 +77,50 @@ export default Cart;
 //ok so now we have the ids of items in the cart, now we should display the item 
 //matching the id to the display
 //create a remove from cart button 
+
+// Array.from(orderState).map((id) =>{
+//     cart.map((item:Item) => {
+//      if(item.inCart && item.id ===id){
+//         return (
+//         <div key={item.id}>
+//         <img src={item.image} height={'70px'} width={'70px'} alt={item.title} />
+//         <p>{item.title}</p>
+//         <p>{item.quantity} x ${item.price}.00</p>
+//         <p>${item.cost}.00</p>
+//         </div>
+//         )
+//     }
+//     return null;
+// })
+// })
+
+
+// cart.map((item:Item) => {
+//     if(item.inCart && item.quantity>0){
+//         return (
+//         <div key={item.id}>
+//         <img src={item.image} height={'70px'} width={'70px'} alt={item.title} />
+//         <p>{item.title}</p>
+//         <p>{item.quantity} x ${item.price}.00</p>
+//         <p>${item.cost}.00</p>
+//         </div>
+//         )
+//     }
+//     return null;
+// })
+
+
+// Array.from(orderState).map((id) => {
+//     const item = cart.find((item) => item.inCart && item.id === id);
+//     if (item) {
+//       return (
+//         <div key={item.id}>
+//           <img src={item.image} height={'70px'} width={'70px'} alt={item.title} />
+//           <p>{item.title}</p>
+//           <p>{item.quantity} x ${item.price}.00</p>
+//           <p>${item.cost}.00</p>
+//         </div>
+//       );
+//     }
+//     return null;
+//   })
