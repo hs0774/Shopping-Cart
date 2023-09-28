@@ -1,0 +1,8 @@
+.Cart{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .CartRight{
+    display: flex;
+} */

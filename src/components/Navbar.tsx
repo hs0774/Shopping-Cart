@@ -7,6 +7,7 @@ import { Link, Route } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import '../css/Navbar.css'
 
+
 interface Item {
     image: string,
     id: number,
@@ -19,10 +20,12 @@ interface Item {
         rate:number
     },
 }
+
 interface Props {
     data: Item[];
     setData: React.Dispatch<React.SetStateAction<Item[]>>;
 }
+
 const Navbar: React.FC<Props> = ({data,setData}) => {
 
     const totalQuantity = data.reduce((accumulator,item) => {
@@ -31,22 +34,6 @@ const Navbar: React.FC<Props> = ({data,setData}) => {
         }
         return accumulator;
     },0);
-
-    // React.useEffect(() => {
-    //     if(data && data.length===0){
-    //         setAllItems(0);
-    //         return;
-    //     }
-        
-    //     const newTotal = data.reduce((accumulator,item:Item) => {
-    //         if(item.inCart){
-    //             return accumulator + item.quantity
-    //         }
-    //         return accumulator;
-    //     },0)
-
-    //     setAllItems(newTotal);
-    // }, [data]);
 
     return (
         <>
@@ -65,7 +52,7 @@ const Navbar: React.FC<Props> = ({data,setData}) => {
                     <Link to='/About'><h3>About</h3></Link>
                 </li>
                 <li>
-                    <Link to='/Cart'><h3>{totalQuantity === 0 ? null : totalQuantity} Cart</h3></Link>
+                    <Link to='/Cart'><h3><span>{totalQuantity === 0 ? null : totalQuantity}</span> Cart</h3></Link>
                 </li>
            </ul>
         </div>   
