@@ -69,11 +69,25 @@ button {
     color: #ffffff; 
     transition: background-color 0.3s;
     padding: 12px 20px;
+    transition: all .33s ease-in;
   }
   
   button:hover {
     background-color: #45a049; 
+    color: rgb(2, 173, 173);
+    font-size: 1.1rem;
   }
   button:active{
     background-color: white;
+    transition: background-color 1s;
   }
+
+  /* .Nav a{
+    text-decoration: none;
+    color: white;
+    transition: all .33s ease-in;
+}
+.Nav a:hover{
+    color: rgb(2, 173, 173);
+    font-size: 1.2em;
+} */

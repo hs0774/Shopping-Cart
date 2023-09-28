@@ -9,25 +9,29 @@ body{
     top: 0; 
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #f5f5f5;
+    background-color: #585757;
     z-index: 1000;
+    opacity: 85%;
+    border: none;
 }
+.Nav a{
+    text-decoration: none;
+    color: white;
+    transition: all .33s ease-in;
+}
+.Nav a:hover{
+    color: rgb(2, 173, 173);
+    font-size: 1.1rem;
+}
+
 .NavLeft{
     flex: 1;
     margin-left: 8px;
 }
-.NavLeft h1:hover{
-    cursor: pointer;
-    color: rgb(2, 173, 173);
-}
+
 .NavRight{
     flex:1;
     display: flex;
     justify-content: space-around;
     list-style-type: none;
-}
-.NavRight li:hover {
-    cursor: pointer;
-    color: rgb(2, 173, 173);
 }
