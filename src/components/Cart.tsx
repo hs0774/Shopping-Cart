@@ -83,7 +83,7 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
                 <div key={item.id}>
                   <button type="button" onClick={(e) => handleClick(item.id)}> &times;</button>
                   <img src={item.image} height={'50px'} width={'50px'} alt={item.title} />
-                  <p>{item.title}</p>
+                  <p>{item.title.split(' ').slice(0, 5).join(' ')}</p>
                   <p>{item.quantity} x ${item.price}.00</p>
                   <p>${item.cost}.00</p>
                 </div>
@@ -99,7 +99,7 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
               return (
                 <div key={item.id}>
                     <div className="leftofRight">
-                        <p>{item.title}..........
+                        <p>{item.title.split(' ').slice(0, 5).join(' ')}..........
                         {item.quantity} x ${item.price}.00</p>
                     </div>
                     <div className="rightofRight">

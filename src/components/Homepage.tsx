@@ -119,24 +119,26 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
 
     return (
         <>
-        <Link to='/Shop'><button>Shop Now</button></Link>
-        <div className="HomeItems">
-            {items.slice(0,3).map((item, index) => (
-                <div key={item.id}>
-                    <img className="HomeItemImg" src={item.image}/>
-                    <p>Title: {item.title}</p>
-                    <p>Price: {item.price}.00</p>
-                    <p>Rating: {item.rating.rate}</p>
-                    <form onSubmit  ={(e) => handleSubmit(e,item.id)}>
-                        <p>Quantity: 
-                            <input value={item.quantity} name='quantity' min='0' step='1'
-                            type="number" onChange={(e) => handleChange(e,item.id)}></input>
-                        </p>
-                        <button>Add to Cart</button>
-                    </form>  
-                    {/* <p>$ {item.cost ? item.cost : item.price}.00</p> */}
-                </div>
-            ))}
+        <div className="HomeItemsContainer">
+            <Link to='/Shop' className="ShopNowButton"><button>Shop Now</button></Link> 
+            <div className="HomeItems">
+                {items.slice(0,3).map((item, index) => (
+                    <div className="HomeItemsDivs" key={item.id}>
+                        <img className="HomeItemImg" src={item.image}/>
+                        <p>{item.title.split(' ').slice(0, 5).join(' ')}</p>
+                        <p>${item.price}.00</p>
+                        <p>{item.rating.rate} &#9733;</p>
+                        <form onSubmit  ={(e) => handleSubmit(e,item.id)}>
+                            <p>
+                                <input value={item.quantity} name='quantity' min='0' step='1'
+                                type="number" onChange={(e) => handleChange(e,item.id)}></input>
+                            </p>
+                            <button>Add to Cart</button>
+                        </form>  
+                        {/* <p>$ {item.cost ? item.cost : item.price}.00</p> */}
+                    </div>
+                ))}
+            </div>
         </div>
         </>    
     )

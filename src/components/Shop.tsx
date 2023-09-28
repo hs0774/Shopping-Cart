@@ -125,9 +125,9 @@ const Shop: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
             {items.map((item) => (
                 <div key={item.id} className="ShopDiv">
                     <img className="ShopItemImg" src={item.image}/>
-                    <p>{item.title}</p>
+                    <p>{item.title.split(' ').slice(0, 5).join(' ')}</p>
                     <p>${item.price}.00</p>
-                    <p>&#9733;{item.rating.rate}</p>
+                    <p>{item.rating.rate} &#9733;</p>
                     <form className="cartForm" onSubmit  ={(e) => handleSubmit(e,item.id)}>
                         <p>Quantity:  
                             <input value={item.quantity} name='quantity' min='0' step='1'
