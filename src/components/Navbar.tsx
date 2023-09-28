@@ -52,7 +52,7 @@ const Navbar: React.FC<Props> = ({data,setData}) => {
                     <Link to='/About'><h3>About</h3></Link>
                 </li>
                 <li>
-                    <Link to='/Cart'><h3>Cart &times; <span>{totalQuantity === 0 ? null : totalQuantity}</span></h3></Link>
+                    <Link to='/Cart'><h3>Cart  <span>{totalQuantity === 0 ? null : '\u00D7 ' + totalQuantity}</span></h3></Link>
                 </li>
            </ul>
         </div>   

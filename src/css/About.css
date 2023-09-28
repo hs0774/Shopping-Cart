@@ -1,0 +1,28 @@
+ .about{
+    height: 50vh;
+    width:600px;
+    background-color: #4caf50; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 8%;
+    opacity: 90%;
+    border-radius: 12px;
+    color: #585757;
+    padding: 5px 30px 5px 30px;
+    transition: color .5s ease-in;
+}
+.about:hover{
+    color: white;
+}
+
+h2 {
+    font-size: 2em; 
+    margin-bottom: 20px; 
+}
+  
+p {
+    text-align: center; 
+}
