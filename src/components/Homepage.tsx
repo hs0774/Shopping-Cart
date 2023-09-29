@@ -67,7 +67,12 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
             })
         );
     }
-
+    function filler(){
+        let x =1
+        if (x===2){
+            console.log(orderState);
+        }
+    }
     function handleSubmit(e:any,id:number){
         e.preventDefault();
         const {name, value} = e.target[0];
@@ -122,7 +127,7 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
         <div className="HomeItemsContainer">
             <Link to='/Shop' className="ShopNowButton"><button>Shop Now</button></Link> 
             <div className="HomeItems">
-                {items.slice(0,3).map((item, index) => (
+                {items.slice(0,3).map((item) => (
                     <div className="HomeItemsDivs" key={item.id}>
                         <img className="HomeItemImg" src={item.image}/>
                         <p>{item.title.split(' ').slice(0, 5).join(' ')}</p>
@@ -135,7 +140,6 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
                             </p>
                             <button>Add to Cart</button>
                         </form>  
-                        {/* <p>$ {item.cost ? item.cost : item.price}.00</p> */}
                     </div>
                 ))}
             </div>

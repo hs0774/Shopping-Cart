@@ -73,6 +73,12 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
             newState.delete(id);
             return newState;
         });
+        setOrderState(prev => {
+            const newState = new Set(prev);
+            newState.delete(id);
+            return newState;
+        });
+        
 
     }
 

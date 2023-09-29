@@ -30,6 +30,8 @@ const Navbar: React.FC<Props> = ({data,setData}) => {
         }
         return accumulator;
     },0);
+    
+
 
     return (
         <>
