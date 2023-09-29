@@ -1,5 +1,6 @@
 import React from "react"; 
 import '../css/Cart.css'
+import { Link, Route } from "react-router-dom";
 
 
 interface Item {
@@ -75,55 +76,70 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
 
     }
 
-    function cartDisplay(bool:boolean){
-       return bool ? Array.from(orderState).map((id) => {
-            const item = cart.find((item) => item.inCart && item.id === id);
-            if (item) {
-              return (
-                <div key={item.id}>
-                  <button type="button" onClick={(e) => handleClick(item.id)}> &times;</button>
-                  <img src={item.image} height={'50px'} width={'50px'} alt={item.title} />
+  function cartDisplay(bool:boolean){
+     return bool ? Array.from(orderState).map((id) => {
+          const item = cart.find((item) => item.inCart && item.id === id);
+          if (item) {
+            return (
+              <div className='Cart1' key={item.id}>
+                 <div className="leftItem">
+                  <div className="leftimg">
+                      <img src={item.image} height={'50px'} width={'50px'} alt={item.title} />
+                  </div>
+                  <div className="leftItemText">
                   <p>{item.title.split(' ').slice(0, 5).join(' ')}</p>
-                  <p>{item.quantity} x ${item.price}.00</p>
-                  <p>${item.cost}.00</p>
+                  {/* <p>{item.quantity} x ${item.price}.00</p> */}
+                  <p>${item.cost}.00</p> 
+                  </div>
                 </div>
-              );
-            }
-            return null;
-        })
-          : (
-          <>
-          {Array.from(orderState).map((id) => {
-            const item = cart.find((item) => item.inCart && item.id === id);
-            if (item) {
-              return (
-                <div key={item.id}>
-                    <div className="leftofRight">
-                        <p>{item.title.split(' ').slice(0, 5).join(' ')}..........
-                        {item.quantity} x ${item.price}.00</p>
-                    </div>
-                    <div className="rightofRight">
-                        <p>${item.cost}.00</p>
-                    </div>
+                <div className="xbutton">
+                   <button className='Xbutton'type="button" onClick={(e) => handleClick(item.id)}>&times;</button>
                 </div>
-              );
-            }
-            return null;
-        })}
-        <h1>Total : ${totalcost}.00</h1>
-        </>
-        )
-    }
+              </div>
+            );
+          }
+          return null;
+      })
+        : (
+        <>
+        {Array.from(orderState).map((id) => {
+          const item = cart.find((item) => item.inCart && item.id === id);
+          if (item) {
+            return (
+              <div className='CartItem' key={item.id}>
+                  <div className="leftofRight">
+                      <div><p>{item.title.split(' ').slice(0, 5).join(' ')}</p></div>
+                      {/* <p>{item.title.split(' ').slice(0, 5).join(' ')} */}
+                      <div>
+                      <p>{item.quantity} x ${item.price}.00</p>
+                      </div>
+                  </div>
+                  <div className="rightofRight">
+                      {/* <p>${item.cost}.00</p> */}
+                  </div>
+              </div>
+            );
+          }
+          return null;
+      })}
+      <div className="rightofRight">
+        <h1>Total - ${totalcost}.00</h1>
+      </div>
+      <div className="checkout">
+        <button>Proceed to Checkout</button>
+      </div>
+      </>
+      )
+  }
     return (
         <div className="Cart">
             <div className="CartLeft">
                 {cart.some(item => item.inCart && item.quantity>0)
-                ? cartDisplay(true) :<p>Cart is empty!</p>}
+                ? cartDisplay(true) :<h1 className="EmptyCart">Cart is empty!</h1>}
             </div>
             <div className="CartRight">
             {cart.some(item => item.inCart && item.quantity>0)
-        ?cartDisplay(false):null}
-                {/* item list names quantity x price  total at bottom*/}
+        ?cartDisplay(false):<div className="checkout2"><Link to='/Shop'><button>Click to Shop</button></Link></div>}
             </div>
         </div>
     )

@@ -1,8 +1,140 @@
 .Cart{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* .CartRight{
+.CartLeft {
+    min-height: 50vh;
+    width:600px;
+    background-color: white; 
     display: flex;
-} */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    /* margin: auto; */
+    opacity: 90%;
+    border-radius: 12px;
+    padding: 12px 30px 30px 30px;
+}
+
+.CartRight{
+    background-color: #4caf50;
+    color: white;
+    width: 450px;
+    max-height: 90vh;
+    padding: 8px;
+    margin-top: 12px;
+    border-radius: 12px;
+    padding: 12px 30px 30px 30px;
+}
+
+@keyframes changeColor {
+    0% {
+        color: #585757;
+        font-size: 1.5rem;
+    }
+    100% {
+      color: #4caf50;
+      font-size: 3rem;
+    }
+  }
+  
+
+.EmptyCart{
+    animation: changeColor 1s infinite;
+}
+
+  .Cart1{
+    display: flex;
+    gap: 4px;
+    border: solid 1px red;
+    margin-top: 4px;
+    align-items: center;
+  }
+
+  .Xbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em; /* Adjust the font size as needed */
+    border: none;
+    cursor: pointer;
+    margin-bottom: 4px;
+  }
+  
+  .leftItem{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    width:450px;
+    align-items: center;
+  }
+  .leftimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+  }
+
+  .leftItemText {
+    flex: 1; /* Allow the text to take up the remaining space */
+  }
+  
+  .rightofRight {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .rightofRight h1 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    transition: all .5s ease-in;
+  }
+  .rightofRight h1:hover{
+    font-size: 2em;
+    color: #585757;
+  }
+  .leftofRight{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .CartItem{
+    transition: color .5s ease-in;
+  }
+  .CartItem:hover{
+    color: #585757;
+  }
+
+  .checkout{
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .checkout button{
+    background-color: white;
+    color: #585757;
+  }
+
+  .checkout2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack children vertically */
+    padding-top: 35%;
+    padding-left: 11%;
+  }
+  
+
+  .checkout2 button{
+    background-color: white;
+    color: #585757;
+  }
+  .checkout2 a{
+    text-decoration: none;
+    color: #585757;
+  }
