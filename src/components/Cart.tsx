@@ -1,6 +1,6 @@
 import React from "react"; 
 import '../css/Cart.css'
-import { Link, Route } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 interface Item {
@@ -93,7 +93,7 @@ const Cart: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
                   </div>
                 </div>
                 <div className="xbutton">
-                   <button className='Xbutton'type="button" onClick={(e) => handleClick(item.id)}>&times;</button>
+                   <button className='Xbutton'type="button" onClick={() => handleClick(item.id)}>&times;</button>
                 </div>
               </div>
             );
