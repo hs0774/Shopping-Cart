@@ -1,9 +1,5 @@
 import React from "react"; 
-import About from './About'
-import Cart from './Cart'
-import Homepage from "./Homepage";
-import Shop from './Shop'
-import { Link, Route } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import '../css/Navbar.css'
 

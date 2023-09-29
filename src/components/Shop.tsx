@@ -1,7 +1,5 @@
 import React from "react"; 
 import '../css/Shop.css'
-import { Link } from "react-router-dom";
-
 
 interface Item {
     image: string,
