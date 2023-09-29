@@ -22,7 +22,7 @@ interface Props {
     setData: React.Dispatch<React.SetStateAction<Item[]>>;
 }
 
-const Navbar: React.FC<Props> = ({data,setData}) => {
+const Navbar: React.FC<Props> = ({data}) => {
 
     const totalQuantity = data.reduce((accumulator,item) => {
         if(item.inCart){

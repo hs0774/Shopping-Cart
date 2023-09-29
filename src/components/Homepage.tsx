@@ -67,12 +67,6 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
             })
         );
     }
-    function filler(){
-        let x =1
-        if (x===2){
-            console.log(orderState);
-        }
-    }
     function handleSubmit(e:any,id:number){
         e.preventDefault();
         const {name, value} = e.target[0];
@@ -120,6 +114,7 @@ const Homepage: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
                 return item;
             })  
         );
+        console.log(orderState);
     }
 
     return (

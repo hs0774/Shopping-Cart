@@ -115,6 +115,7 @@ const Shop: React.FC<Props> = ({data,setData,orderData,setOrderData}) => {
                 return item;
             })  
         );
+        console.log(orderState)
     }
 
     return (
